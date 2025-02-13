@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentine's Day Quiz</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f8f8;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #e91e63;
+        }
+
+        .question {
+            margin: 20px 0;
+        }
+
+        button {
+            padding: 10px 20px;
+            margin: 5px;
+            background-color: #e91e63;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #c2185b;
+        }
+
+        .game-container {
+            margin-top: 20px;
+        }
+
+        .heart-game {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        .heart {
+            width: 50px;
+            height: 50px;
+            background-color: #e91e63;
+            clip-path: polygon(50% 0%, 0% 35%, 50% 100%, 100% 35%);
+            margin: 5px;
+            cursor: pointer;
+        }
+
+        .heart:hover {
+            transform: scale(1.1);
+            transition: 0.3s;
+        }
+
+        .date-details {
+            margin-top: 30px;
+            background-color: #f1f1f1;
+            padding: 20px;
+            border-radius: 8px;
+            display: none;
+        }
+
+        .final-message {
+            font-size: 18px;
+            margin-top: 20px;
+            color: #e91e63;
+        }
+
+        .click-button {
+            background-color: #4caf50;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Valentine's Day Quiz</h1>
+
+        <div class="question">
+            <h3>Will you be my valentine for tomorrow?</h3>
+            <button onclick="nextQuestion()">Yes</button>
+            <button onclick="nextQuestion()">Definitely</button>
+            <button onclick="nextQuestion()">Absolutely</button>
+            <button onclick="nextQuestion()">No :(</button>
+        </div>
+
+        <div class="question">
+            <h3>Do you love me?</h3>
+            <button onclick="nextQuestion()">Yes</button>
+            <button onclick="nextQuestion()">No</button>
+            <button onclick="nextQuestion()">What kind of question is that</button>
+        </div>
+
+        <div class="question">
+            <h3>Are you still mad at me?</h3>
+            <button onclick="nextQuestion()">Yes</button>
+            <button onclick="nextQuestion()">Slight</button>
+            <button onclick="nextQuestion()">No</button>
+        </div>
+
+        <div class="question">
+            <h3>Are you free tomorrow from 10:00 am to 12:30 pm?</h3>
+            <button onclick="nextQuestion()">Yes</button>
+            <button onclick="nextQuestion()">No</button>
+        </div>
+
+        <div class="game-container" style="display:none;">
+            <h2>Play the Heart Game!</h2>
+            <div class="heart-game">
+                <div class="heart" onclick="gameEnd()"></div>
+                <div class="heart" onclick="gameEnd()"></div>
+                <div class="heart" onclick="gameEnd()"></div>
+                <div class="heart" onclick="gameEnd()"></div>
+                <div class="heart" onclick="gameEnd()"></div>
+            </div>
+        </div>
+
+        <div class="date-details" id="date-details">
+            <h3>Here are the details for our date tomorrow:</h3>
+            <p><strong>Time:</strong> 10:00 am to 12:30 pm</p>
+            <p><strong>When:</strong> February 14, 2025 (Friday)</p>
+            <p><strong>Where:</strong> Sm San Mateo</p>
+            <p><strong>What to do:</strong> Eat at Kyukyu Ramen, Drink at Starbucks, and Oldmoon Studio for our cute photobooth</p>
+            <button class="click-button" onclick="thankYouMessage()">Click this if you’re going</button>
+        </div>
+
+        <div class="final-message" id="final-message">
+            <p>Thank you for answering this! Let’s enjoy our date and see you tomorrow my baby! Sorry again;((</p>
+        </div>
+    </div>
+
+    <script>
+        function nextQuestion() {
+            const allQuestions = document.querySelectorAll('.question');
+            let lastQuestionIndex = Array.from(allQuestions).findIndex(question => question.style.display === 'none');
+
+            if (lastQuestionIndex === -1) {
+                // Hide the questions and start the game
+                allQuestions.forEach(question => question.style.display = 'none');
+                document.querySelector('.game-container').style.display = 'block';
+            }
+        }
+
+        function gameEnd() {
+            document.querySelector('.heart-game').style.display = 'none';
+            document.querySelector('#date-details').style.display = 'block';
+        }
+
+        function thankYouMessage() {
+            document.querySelector('#date-details').style.display = 'none';
+            document.querySelector('#final-message').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
